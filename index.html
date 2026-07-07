@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A modern single-page weather dashboard with current conditions, hourly forecast, and daily outlook." />
+  <title>Weatherly Dashboard</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="theme-clear">
+  <div class="app-shell">
+    <header class="topbar" aria-label="Weather search and settings">
+      <div>
+        <p class="eyebrow">Weatherly</p>
+        <h1>Forecast dashboard</h1>
+      </div>
+
+      <form class="search-panel" id="searchForm" novalidate>
+        <label class="visually-hidden" for="citySearch">Search city</label>
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="citySearch" type="search" placeholder="Search city" value="Reykjavik" autocomplete="off" />
+          <button class="btn btn-dark" id="searchButton" type="submit">Search</button>
+        </div>
+        <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </header>
+
+    <main>
+      <section class="hero-grid" aria-label="Current weather">
+        <article class="weather-hero glass-panel">
+          <div class="hero-copy">
+            <div class="city-row">
+              <div>
+                <p class="label">Current weather</p>
+                <h2 id="currentCity">Reykjavik, Iceland</h2>
+              </div>
+              <div class="unit-toggle" aria-label="Temperature unit">
+                <button class="unit-button active" type="button" data-unit="metric">°C</button>
+                <button class="unit-button" type="button" data-unit="imperial">°F</button>
+              </div>
+            </div>
+
+            <p class="timestamp" id="currentTime">Tuesday, July 7 · 14:30</p>
+            <div class="temperature-row">
+              <strong id="currentTemp">14°</strong>
+              <div>
+                <p class="condition" id="currentCondition">Bright intervals</p>
+                <p class="feels-like" id="feelsLike">Feels like 12° · Gentle northwest breeze</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-visual" aria-hidden="true">
+            <span class="current-weather-icon" id="currentIcon">☀</span>
+            <div class="sun-core"></div>
+            <div class="cloud cloud-one"></div>
+            <div class="cloud cloud-two"></div>
+          </div>
+        </article>
+
+        <aside class="insight-panel glass-panel" aria-label="Weather summary">
+          <p class="label">Today</p>
+          <h3 id="todaySummary">Loading local forecast</h3>
+          <p id="todayDetail">Allow location access for your nearest weather, or search for a city.</p>
+          <div class="mini-stats">
+            <span>High <strong id="todayHigh">--</strong></span>
+            <span>Low <strong id="todayLow">--</strong></span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-grid">
+        <article class="forecast-card panel-section">
+          <div class="section-heading">
+            <div>
+              <p class="label">Next 24 hours</p>
+              <h2>Hourly forecast</h2>
+            </div>
+            <span class="muted">Local time</span>
+          </div>
+          <div class="hourly-strip" id="hourlyForecast" aria-label="Hourly forecast carousel"></div>
+        </article>
+
+        <article class="metrics-grid" aria-label="Secondary weather metrics">
+          <div class="metric-card">
+            <span>Humidity</span>
+            <strong id="humidityValue">--</strong>
+            <small id="humidityHint">Waiting for live data</small>
+          </div>
+          <div class="metric-card">
+            <span>Wind</span>
+            <strong id="windValue">--</strong>
+            <small id="windHint">10 m wind speed</small>
+          </div>
+          <div class="metric-card">
+            <span>UV Index</span>
+            <strong id="uvValue">--</strong>
+            <small id="uvHint">Not included in this free call</small>
+          </div>
+          <div class="metric-card">
+            <span>Air Quality</span>
+            <strong id="airValue">--</strong>
+            <small id="airHint">Add Open-Meteo air quality next</small>
+          </div>
+        </article>
+
+        <article class="daily-card panel-section">
+          <div class="section-heading">
+            <div>
+              <p class="label">This week</p>
+              <h2>5-day forecast</h2>
+            </div>
+            <span class="muted">Updated 8 min ago</span>
+          </div>
+          <div class="daily-list" id="dailyForecast" aria-label="Five day forecast"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
